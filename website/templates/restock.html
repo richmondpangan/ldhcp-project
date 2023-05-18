@@ -1,0 +1,283 @@
+{% extends "views-base.html" %}{% block title %}LDHCP Restock{% endblock %}
+
+{% block content %}
+        <!--Sidebar nav-->
+        <div class="sidebar" id="side_nav">
+            <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
+                <h1 class="fs-4 fw-bold pt-1 ps-2"><span class="text-logo">LDHCP</span></h1>
+                <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars"></i></button>
+            </div>
+
+            <ul class="list-unstyled px-2">
+                <li class=""><a href="/dashboard" class="text-decoration-none px-3 py-3 d-block"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li class=""><a href="/employee" class="text-decoration-none px-3 py-3 mt-2 d-block"><i class="fa-solid fa-user-tie"></i> Employees</a></li>
+
+                <!--Made changes here-->
+                <div class="btn-group dropend">
+                    <button type="button" class="btn btn-secondary" id="sidebar-btn">
+                        <a href="/inventory" class="text-decoration-none px-3 py-3 mt-2 d-block active" id="inv-txt"><i class="fa-solid fa-box-archive"></i> Inventory</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" id="sidebar-btn-toggle">
+                      <span class="visually-hidden">Toggle Dropend</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class=""><a class="dropdown-item" href="/returns">Returns</a></li>
+                        <li class=""><a class="dropdown-item" href="/restock">Restock</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group dropend">
+                    <button type="button" class="btn btn-secondary" id="sidebar-btn">
+                        <a href="/storage" class="text-decoration-none px-3 py-3 mt-2 d-block" id="storage-txt"><i class="fa-solid fa-warehouse"></i> Storage</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" id="sidebar-btn-toggle">
+                      <span class="visually-hidden">Toggle Dropend</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class=""><a class="dropdown-item" href="/disposal">Disposal</a></li>
+                    </ul>
+                </div>
+                <!---->
+
+                <li class=""><a href="/medicine" class="text-decoration-none px-3 py-3 mt-2 d-block"><i class="fa-solid fa-pills"></i> Medicine</a></li>
+                <li class=""><a href="/suppliers" class="text-decoration-none px-3 py-3 mt-2 d-block"><i class="fa-solid fa-truck-field"></i> Suppliers</a></li>
+                <br><br><br><br>
+                <li class=""><a href="#" class="text-decoration-none px-3 py-3 mt-5 d-block"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                <li class=""><a href="#" class="text-decoration-none px-3 py-1 mt-1 d-block"><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!--Main Content-->
+        <div class="content">
+            <!--User Profile-->
+            <div class="row px-3">
+                <div class="col-4 col-sm-4 col-md-5 col-lg-7 col-xl-9">
+                    <div class="d-flex justify-content-between px-2 py-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="col-8 col-sm-8 col-md-7 col-lg-5 col-xl-3 py-2">
+                    <h1 class="circle-user-container"><i class="fa-solid fa-circle-user" id="user-logo-close" onclick="toggleUserProfile()"></i></h1>
+                    <div class="sub-menu-wrap" id="subMenu">
+                        <div class="card">
+                            <div class="user-info">
+                                <div class="row px-3">
+                                    <div class="col-3 col-md-3 col-lg-3 ps-3 pt-3">
+                                        <i class="fa-solid fa-circle-user" id="user-logo-open"></i>
+                                    </div>
+                                    <div class="col-9 col-md-9 col-lg-9 pt-4">
+                                        <h4 class="user-name">My idol</h4>
+                                    </div>
+                                </div>
+                                <hr class="user-info-hr">
+
+                                <a href="#" class="sub-menu-link">
+                                    <div class="row px-3">
+                                        <div class="col-3 col-md-3 col-lg-3 ps-4">
+                                            <i class="fa-solid fa-user-pen"></i>
+                                        </div>
+                                        <div class="col-9 col-md-9 col-lg-9 pt-2">
+                                            <h5>Edit Profile</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="sub-menu-link">
+                                    <div class="row px-3 pt-3">
+                                        <div class="col-3 col-md-3 col-lg-3 ps-4">
+                                            <i class="fa-solid fa-circle-question"></i>
+                                        </div>
+                                        <div class="col-9 col-md-9 col-lg-9 pt-2">
+                                            <h5>Help & Support</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="sub-menu-link">
+                                    <div class="row px-3 py-3">
+                                        <div class="col-3 col-md-3 col-lg-3 ps-4">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                        </div>
+                                        <div class="col-9 col-md-9 col-lg-9 pt-2">
+                                            <h5>Logout</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Sales & Purchase of Medicines-->
+            <div class="row g-3 px-3 py-3">
+                <div class="col-12 col-lg-12">
+                    <div class="card" id="table-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-8 d-flex align-items-center">
+                                    <h6 class="card-title text-center fs-4">Restock</h6>  
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="d-grid justify-content-end">
+                                        <button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#addRestockModal">Add Restock</button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                    <div class="d-grid justify-content-center">
+                                        <button type="button" class="btn btn-light">Filters</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table align-middle table-hover">
+                                        <thead class="table-dark"><br>
+                                            <tr class="table-header fw-semibold text-center"> 
+                                                <th scope="col">Restock ID</th>
+                                                <th scope="col">Supplier Name</th>
+                                                <th scope="col">Item Name</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Restocked By</th>
+                                                <th scope="col">Restocked Date</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for restock in restock_list %}
+                                            <tr class="table-data align-middle text-center">
+                                                <td class="fw-bold" scope="row">{{ restock.restock_id }}</td>
+                                                <td>{{ restock.restock_suppliername }}</td>
+                                                <td>{{ restock.restock_itemname }}</td>
+                                                <td>{{ restock.restock_quantity }}</td>
+                                                <td>{{ restock.restocked_by }}</td>
+                                                <td>{{ restock.restock_date }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-link edit-btn" data-bs-toggle="modal" data-bs-target="#editRestockModal{{ restock.restock_id }}"> 
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <form action="/delete_restock/{{ restock.restock_id }}" method="POST" style="display: inline;">
+                                                        <button type="submit" class="btn btn-link delete-btn">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add Restock Modal -->
+            <div class="modal fade" id="addRestockModal" data-bs-backdrop="static" role="dialog" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addRestockModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="addRestockModalLabel">Add Restock</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" >
+                            <form id="addRestockForm" action="/add_restock" method="POST">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Supplier Name</span>
+                                    <input type="text" class="form-control" id="restock_suppliername" name="restock_suppliername" placeholder="Enter Supplier Name" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Supplier ID</span>
+                                    <input type="text" class="form-control" id="supplier_id" name="supplier_id" placeholder="Enter Supplier ID" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Item Name</span>
+                                    <input type="text" class="form-control" id="restock_itemname" name="restock_itemname" placeholder="Enter Item Name" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Inventory ID</span>
+                                    <input type="text" class="form-control" id="inventory_id" name="inventory_id" placeholder="Enter Inventory ID" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Quantity</span>
+                                    <input type="text" class="form-control" id="restock_quantity" name="restock_quantity" placeholder="Enter Quantity" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Restocked By</span>
+                                    <input type="text" class="form-control" id="restocked_by" name="restocked_by" placeholder="Enter Restocked By" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Employee ID</span>
+                                    <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="Enter Returner ID" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Restock Date</span>
+                                    <input type="text" class="form-control" id="restock_date" name="restock_date" placeholder="Enter Date" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--data-bs-dismiss="modal"  closes the modal-->
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Restock Modal -->
+            {% for item in restock_list %}
+            <div class="modal fade" id="editRestockModal{{ item.restock_id }}" tabindex="-1" aria-labelledby="editRestockModalLabel{{ item.restock_id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editRestockModalLabel{{ item.restock_id }}">Edit Restock</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="/edit_restock/{{ item.restock_id }}">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Supplier Name</label>
+                                    <input type="text" class="form-control" id="restock_suppliername" name="restock_suppliername" value="{{ item.restock_suppliername }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Supplier ID</label>
+                                    <input type="text" class="form-control" id="supplier_id" name="supplier_id" value="{{ item.supplier_id }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Item Name</label>
+                                    <input type="text" class="form-control" id="restock_itemname" name="restock_itemname" value="{{ item.restock_itemname }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Inventory ID</label>
+                                    <input type="text" class="form-control" id="inventory_id" name="inventory_id" value="{{ item.inventory_id }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Quantity</label>
+                                    <input type="text" class="form-control" id="restock_quantity" name="restock_quantity" value="{{ item.restock_quantity }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Restocked By</label>
+                                    <input type="text" class="form-control" id="restocked_by" name="restocked_by" value="{{ item.restocked_by }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Employee ID</label>
+                                    <input type="text" class="form-control" id="employee_id" name="employee_id" value="{{ item.employee_id }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Restock Date</label>
+                                    <input type="text" class="form-control" id="restock_date" name="restock_date" value="{{ item.restock_date }}" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--data-bs-dismiss="modal"  closes the modal-->
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}

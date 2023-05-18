@@ -1,0 +1,236 @@
+{% extends "views-base.html" %}{% block title %}LDHCP Dashboard{% endblock %}
+
+{% block content %}
+        <!--Sidebar nav-->
+        <div class="sidebar" id="side_nav">
+            <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
+                <h1 class="fs-4 fw-bold pt-1 ps-2"><span class="text-logo">LDHCP</span></h1>
+                <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars"></i></button>
+            </div>
+
+            <ul class="list-unstyled px-2">
+                <li class="active"><a href="/dashboard" id="dashboard" class="text-decoration-none px-3 py-3 d-block"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li class=""><a href="/employee" id="employee" class="text-decoration-none px-3 py-3 mt-2 d-block"><i class="fa-solid fa-user-tie"></i> Employees</a></li>
+                
+                <!--Made changes here-->
+                <div class="btn-group dropend">
+                    <button type="button" class="btn btn-secondary" id="sidebar-btn">
+                        <a href="/inventory" class="text-decoration-none px-3 py-3 mt-2 d-block" id="inv-txt"><i class="fa-solid fa-box-archive"></i> Inventory</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" id="sidebar-btn-toggle">
+                      <span class="visually-hidden">Toggle Dropend</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class=""><a class="dropdown-item" href="/returns">Returns</a></li>
+                        <li class=""><a class="dropdown-item" href="/restock">Restock</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group dropend">
+                    <button type="button" class="btn btn-secondary" id="sidebar-btn">
+                        <a href="/storage" class="text-decoration-none px-3 py-3 mt-2 d-block" id="storage-txt"><i class="fa-solid fa-warehouse"></i> Storage</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" id="sidebar-btn-toggle">
+                      <span class="visually-hidden">Toggle Dropend</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class=""><a class="dropdown-item" href="/disposal">Disposal</a></li>
+                    </ul>
+                </div>
+                
+                <li class=""><a href="/medicine" id="medicine" class="text-decoration-none px-3 py-3 mt-2 d-block"><i class="fa-solid fa-pills"></i> Medicine</a></li>
+                <li class=""><a href="/suppliers" id="suppliers" class="text-decoration-none px-3 py-3 mt-2 d-block"><i class="fa-solid fa-truck-field"></i> Suppliers</a></li>
+                <br><br><br><br>
+                <li class=""><a href="/settings" id="settings" class="text-decoration-none px-3 py-3 mt-5 d-block"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                <li class=""><a href="/logout" id="logout" class="text-decoration-none px-3 py-1 mt-1 d-block"><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!--Main Content-->
+        <div class="content">
+            <!--User Profile-->
+            <div class="row px-3">
+                <div class="col-4 col-sm-4 col-md-5 col-lg-7 col-xl-9">
+                    <div class="d-flex justify-content-between px-2 py-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="col-8 col-sm-8 col-md-7 col-lg-5 col-xl-3 py-2">
+                    <h1 class="circle-user-container"><i class="fa-solid fa-circle-user" id="user-logo-close" onclick="toggleUserProfile()"></i></h1>
+                    <div class="sub-menu-wrap" id="subMenu">
+                        <div class="card">
+                            <div class="user-info">
+                                <div class="row px-3">
+                                    <div class="col-3 col-md-3 col-lg-3 ps-3 pt-3">
+                                        <i class="fa-solid fa-circle-user" id="user-logo-open"></i>
+                                    </div>
+                                    <div class="col-9 col-md-9 col-lg-9 pt-4">
+                                        <h4 class="user-name">My idol</h4>
+                                    </div>
+                                </div>
+                                <hr class="user-info-hr">
+
+                                <a href="#" class="sub-menu-link">
+                                    <div class="row px-3">
+                                        <div class="col-3 col-md-3 col-lg-3 ps-4">
+                                            <i class="fa-solid fa-user-pen"></i>
+                                        </div>
+                                        <div class="col-9 col-md-9 col-lg-9 pt-2">
+                                            <h5>Edit Profile</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="sub-menu-link">
+                                    <div class="row px-3 pt-3">
+                                        <div class="col-3 col-md-3 col-lg-3 ps-4">
+                                            <i class="fa-solid fa-circle-question"></i>
+                                        </div>
+                                        <div class="col-9 col-md-9 col-lg-9 pt-2">
+                                            <h5>Help & Support</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="sub-menu-link">
+                                    <div class="row px-3 py-3">
+                                        <div class="col-3 col-md-3 col-lg-3 ps-4">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                        </div>
+                                        <div class="col-9 col-md-9 col-lg-9 pt-2">
+                                            <h5>Logout</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Inventory summary and Storage summary-->
+            <div class="row g-3 px-3 py-3">
+                <div class="col-12 col-lg-8 col-xl-6">
+                    <div class="card" id="inventory-summary-card">
+                        <div class="card-body">
+                            <h6 class="card-title" id="card-title-display">Inventory Summary</h6>
+                            <div class="row g-3">
+                                <div class="col-xl-2 ps-5 pt-1"></div>
+                                <div class="col-xl-5 ps-5 pt-1"><img src="{{ url_for('static', filename='quantity.svg') }}" alt="quantity"></div>
+                                <div class="col-xl-5 ps-5 pt-1"><img src="{{ url_for('static', filename='on-the-way.svg') }}" alt="on the way"></div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-xl-2 ps-5 pt-1"></div>
+                                <div class="col-xl-5 ps-5">868</div>
+                                <div class="col-xl-5 ps-5">200</div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-xl-2 ps-5 pt-1"></div>
+                                <div class="col-xl-5">Quantity in Hand</div>
+                                <div class="col-xl-5">To be received</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-8 col-xl-6">
+                    <div class="card" id="storage-summary-card">
+                        <div class="card-body">
+                            <h6 class="card-title" id="card-title-display">Storage Summary</h6>
+                            <div class="row g-3">
+                                <div class="col-xl-2 ps-5 pt-1"></div>
+                                <div class="col-xl-5 ps-5 pt-1"><img src="{{ url_for('static', filename='suppliers.svg') }}" alt="quantity"></div>
+                                <div class="col-xl-5 ps-5 pt-1"><img src="{{ url_for('static', filename='categories.svg') }}" alt="categories"></div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-xl-2 ps-5 pt-1"></div>
+                                <div class="col-xl-5 ps-5">131</div>
+                                <div class="col-xl-5 ps-5">121</div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-xl-2 ps-5 pt-1"></div>
+                                <div class="col-xl-5">Number of Suppliers</div>
+                                <div class="col-xl-5">Number of Batches</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Sales & Purchase of Medicines-->
+            <div class="row g-3 px-3">
+                <div class="col-12 col-lg-12">
+                    <div class="card" id="sp-medicine-card">
+                        <div class="card-body vh-100">
+                            <h6 class="card-title">Sales & Purchase of Medicines</h6>
+                            <div class="chart-box-sales-purchase">
+                                <canvas id="medicines-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <!--Top Selling Medicine & Low Quantity Stock-->
+            <div class="row g-3 px-3 py-3">
+                <div class="col-12 col-lg-6">
+                    <div class="card" id="top-selling-card">
+                        <div class="card-body">
+                            <h6 class="card-title">Top Selling Medicine</h6>
+                            <div class="">
+                                <table class="table scrollable">
+                                    <thead>
+                                        <tr>
+                                            <th>Generic Name</th>
+                                            <th>Sold Quantity</th>
+                                            <th>Remaining Quantity</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="generic-name">Acetaminophen</td>
+                                            <td class="sold">1000</td>
+                                            <td class="remaining">12</td>
+                                            <td class="price">5.99</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="generic-name">Ibuprofen</td>
+                                            <td class="sold">500</td>
+                                            <td class="remaining">15</td>
+                                            <td class="price">7.49</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="card" id="low-stock-card">
+                        <div class="card-body">
+                            <h6 class="card-title">Low Quantity Stock</h6>
+                            <div class="scrollable">
+                                <table class="table table-borderless" style= "border-radius: 14px; overflow: hidden;">
+                                    <thead>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Acetaminophen <br> Remaining Quantity: 12</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><br>Low</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ibuprofen <br> Remaining Quantity: 15</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><br>Low</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+#inventory-summary-card, #storage-summary-card {
+    height: 140px;
+    background: #FFFFFF;
+    box-shadow: 4px 4px 4px rgba(29, 75, 163, 0.1), 8px 8px 40px rgba(29, 75, 163, 0.15);
+    border-radius: 14px;
+    border: none;
+}
+
+#sp-medicine-card {
+    height: 270px;
+    background: #FFFFFF;
+    box-shadow: 4px 4px 4px rgba(29, 75, 163, 0.1), 8px 8px 40px rgba(29, 75, 163, 0.15);
+    border-radius: 14px;
+    border: none;
+}
+
+#top-selling-card, #low-stock-card {
+    height: 180px;
+    background: #FFFFFF;
+    box-shadow: 4px 4px 4px rgba(29, 75, 163, 0.1), 8px 8px 40px rgba(29, 75, 163, 0.15);
+    border-radius: 14px;
+    border: none;
+}
+
+.fa-credit-card, .fa-store{
+    background: #1D4BA3F2;
+    border-radius: 50%;
+    padding: 20px;
+    font-size: 30px;
+    color: white;
+}
+
+.chart-box-sales-purchase {
+    height: 220px;
+}
+
+.scrollable {
+    height: 120px;
+    overflow: scroll;
+}
+
+.generic-name {
+    color: #48505E;
+}
+
+.sold, .remaining, .price {
+    color: #777777;
+}
