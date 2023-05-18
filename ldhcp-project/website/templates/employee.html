@@ -1,0 +1,238 @@
+{% extends "views-base.html" %}{% block title %}LDHCP Employees{% endblock %}
+
+{% block content %}
+        <!--Sidebar nav-->
+        <div class="sidebar" id="side_nav">
+            <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
+                <h1 class="fs-4 fw-bold pt-1 ps-2"><span class="text-logo">LDHCP</span></h1>
+                <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"><i class="fa-solid fa-bars"></i></button>
+            </div>
+
+            <ul class="list-unstyled px-2">
+                <li class=""><a href="/dashboard" id="dashboard" class="text-decoration-none px-3 py-3 d-block"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li class="active"><a href="/employee" id="employee" class="text-decoration-none px-3 py-3 mt-2 d-block"><i class="fa-solid fa-user-tie"></i> Employees</a></li>
+                
+                <!--Made changes here-->
+                <div class="btn-group dropend">
+                    <button type="button" class="btn btn-secondary" id="sidebar-btn">
+                        <a href="/inventory" class="text-decoration-none px-3 py-3 mt-2 d-block" id="inv-txt"><i class="fa-solid fa-box-archive"></i> Inventory</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" id="sidebar-btn-toggle">
+                      <span class="visually-hidden">Toggle Dropend</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class=""><a class="dropdown-item" href="/returns">Returns</a></li>
+                        <li class=""><a class="dropdown-item" href="/restock">Restock</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group dropend">
+                    <button type="button" class="btn btn-secondary" id="sidebar-btn">
+                        <a href="/storage" class="text-decoration-none px-3 py-3 mt-2 d-block" id="storage-txt"><i class="fa-solid fa-warehouse"></i> Storage</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" id="sidebar-btn-toggle">
+                      <span class="visually-hidden">Toggle Dropend</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class=""><a class="dropdown-item" href="/disposal">Disposal</a></li>
+                    </ul>
+                </div>
+                
+                <li class=""><a href="/medicine" id="medicine" class="text-decoration-none px-3 py-3 mt-2 d-block"><i class="fa-solid fa-pills"></i> Medicine</a></li>
+                <li class=""><a href="/suppliers" id="suppliers" class="text-decoration-none px-3 py-3 mt-2 d-block"><i class="fa-solid fa-truck-field"></i> Suppliers</a></li>
+                <br><br><br><br>
+                <li class=""><a href="/settings" id="settings" class="text-decoration-none px-3 py-3 mt-5 d-block"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                <li class=""><a href="/logout" id="logout" class="text-decoration-none px-3 py-1 mt-1 d-block"><i class="fa-solid fa-arrow-right-from-bracket fa-flip-horizontal"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!--Main Content-->
+        <div class="content">
+            <!--User Profile-->
+            <div class="row px-3">
+                <div class="col-4 col-sm-4 col-md-5 col-lg-7 col-xl-9">
+                    <div class="d-flex justify-content-between px-2 py-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="col-8 col-sm-8 col-md-7 col-lg-5 col-xl-3 py-2">
+                    <h1 class="circle-user-container"><i class="fa-solid fa-circle-user" id="user-logo-close" onclick="toggleUserProfile()"></i></h1>
+                    <div class="sub-menu-wrap" id="subMenu">
+                        <div class="card">
+                            <div class="user-info">
+                                <div class="row px-3">
+                                    <div class="col-3 col-md-3 col-lg-3 ps-3 pt-3">
+                                        <i class="fa-solid fa-circle-user" id="user-logo-open"></i>
+                                    </div>
+                                    <div class="col-9 col-md-9 col-lg-9 pt-4">
+                                        <h4 class="user-name">My idol</h4>
+                                    </div>
+                                </div>
+                                <hr class="user-info-hr">
+
+                                <a href="#" class="sub-menu-link">
+                                    <div class="row px-3">
+                                        <div class="col-3 col-md-3 col-lg-3 ps-4">
+                                            <i class="fa-solid fa-user-pen"></i>
+                                        </div>
+                                        <div class="col-9 col-md-9 col-lg-9 pt-2">
+                                            <h5>Edit Profile</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="sub-menu-link">
+                                    <div class="row px-3 pt-3">
+                                        <div class="col-3 col-md-3 col-lg-3 ps-4">
+                                            <i class="fa-solid fa-circle-question"></i>
+                                        </div>
+                                        <div class="col-9 col-md-9 col-lg-9 pt-2">
+                                            <h5>Help & Support</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="sub-menu-link">
+                                    <div class="row px-3 py-3">
+                                        <div class="col-3 col-md-3 col-lg-3 ps-4">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                        </div>
+                                        <div class="col-9 col-md-9 col-lg-9 pt-2">
+                                            <h5>Logout</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Sales & Purchase of Medicines-->
+            <div class="row g-3 px-3 py-3">
+                <div class="col-12 col-lg-12">
+                    <div class="card" id="table-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-8 d-flex align-items-center">
+                                    <h6 class="card-title text-center fs-4">Employees</h6>  
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="d-grid justify-content-end">
+                                        <button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">Add Employee</button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                    <div class="d-grid justify-content-center">
+                                        <button type="button" class="btn btn-light">Filters</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="table-responsive overflow-scroll">
+                                    <table class="table align-middle table-hover">
+                                        <thead class="table-dark"><br>
+                                            <tr class="table-header fw-semibold text-center"> 
+                                                <th scope="col">Employee ID</th>
+                                                <th scope="col">Employee Name</th>
+                                                <th scope="col">Email Address</th>
+                                                <th scope="col">Contact Number</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for employee in employees %}
+                                            <tr class="table-data align-middle text-center">
+                                                <td class="fw-bold" scope="row">{{ employee.employee_id }}</td>
+                                                <td>{{ employee.employee_name }}</td>
+                                                <td>{{ employee.employee_email }}</td>
+                                                <td>{{ employee.employee_contact_no }}</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-link edit-btn" data-bs-toggle="modal" data-bs-target="#editEmployeeModal{{ employee.employee_id }}"> 
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <form action="/delete_employee/{{ employee.employee_id }}" method="POST" style="display: inline;">
+                                                        <button type="submit" class="btn btn-link delete-btn">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Employee Modal -->
+            <div class="modal fade" id="addEmployeeModal" data-bs-backdrop="static" role="dialog" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="addEmployeeModalLabel">Add Employee</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" >
+                            <form id="addEmployeeForm" action="/add_employee" method="POST">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Employee Name</span>
+                                    <input type="text" class="form-control" id="employee_name" name="employee_name" placeholder="Enter Employee Name" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Email Address</span>
+                                    <input type="text" class="form-control" id="employee_email" name="employee_email" placeholder="Enter Email Address" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="">Contact Number</span>
+                                    <input type="text" class="form-control" id="employee_contact_no" name="employee_contact_no" placeholder="Enter Contact Number" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--data-bs-dismiss="modal"  closes the modal-->
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Employee Modal -->
+            {% for employee in employees %}
+            <div class="modal fade" id="editEmployeeModal{{ employee.employee_id }}" tabindex="-1" aria-labelledby="editEmployeeModalLabel{{ employee.employee_id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editEmployeeModalLabel{{ employee.employee_id }}">Edit Employee</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="/edit_employee/{{ employee.employee_id }}">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Employee Name</label>
+                                    <input type="text" class="form-control" id="employee_name" name="employee_name" value="{{ employee.employee_name }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Email Address</label>
+                                    <input type="text" class="form-control" id="employee_email" name="employee_email" value="{{ employee.employee_email }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="position" class="form-label">Contact Number</label>
+                                    <input type="text" class="form-control" id="employee_contact_no" name="employee_contact_no" value="{{ employee.employee_contact_no }}" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <!--data-bs-dismiss="modal"  closes the modal-->
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
+                                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}
